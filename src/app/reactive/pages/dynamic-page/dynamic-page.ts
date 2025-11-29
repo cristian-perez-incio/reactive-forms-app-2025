@@ -1,8 +1,9 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'reactive-dynamic-page',
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './dynamic-page.html'
 })
 export class DynamicPage {
