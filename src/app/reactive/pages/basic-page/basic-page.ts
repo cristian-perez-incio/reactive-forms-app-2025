@@ -2,6 +2,8 @@ import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+import { FormUtils } from '../../../utils/form-utils';
+
 @Component({
   selector: 'reactive-basic-page',
   imports: [JsonPipe, ReactiveFormsModule],
@@ -9,6 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class BasicPage {
 
+  formUtils = FormUtils;
   private formBuilder = inject(FormBuilder);
 
   myForm: FormGroup = this.formBuilder.group({
@@ -22,31 +25,6 @@ export class BasicPage {
     price: new FormControl(0),
     stockLevel: new FormControl(0),
   });*/
-
-  isValidField(fieldName: string): boolean | null {
-    return !this.myForm.controls[fieldName].errors || !this.myForm.controls[fieldName].touched;
-  }
-
-  getFieldErrorMsg(fieldName: string): string | null {
-    if (!this.myForm.controls[fieldName]) {
-      return null;
-    }
-
-    const errors = this.myForm.controls[fieldName].errors ?? {};
-
-    for (const key of Object.keys(errors)) {
-      switch (key) {
-        case 'required':
-          return 'Este campo es obligatorio';
-        case 'minlength':
-          return `Ingrese por lo menos ${errors[key].requiredLength} caracteres`;
-        case 'min':
-          return `Ingrese un valor igual o mayor a ${errors[key].min}`;
-      }
-    }
-
-    return null;
-  }
 
   onSubmit() {
     if (this.myForm.invalid) {
