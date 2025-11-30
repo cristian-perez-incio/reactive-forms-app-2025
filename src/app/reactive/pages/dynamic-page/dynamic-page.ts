@@ -2,6 +2,8 @@ import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+import { FormUtils } from '../../../utils/form-utils';
+
 @Component({
   selector: 'reactive-dynamic-page',
   imports: [JsonPipe, ReactiveFormsModule],
@@ -9,6 +11,7 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 })
 export class DynamicPage {
 
+  formUtils = FormUtils;
   private formBuilder = inject(FormBuilder);
 
   myForm: FormGroup = this.formBuilder.group({
