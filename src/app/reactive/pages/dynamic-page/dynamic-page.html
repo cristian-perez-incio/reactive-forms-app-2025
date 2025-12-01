@@ -20,7 +20,7 @@
     <div class="col-sm-9">
       <div class="input-group">
         <input class="form-control" placeholder="Agregar favorito" [formControl]="newFavoriteGame"
-          (keydown.enter)="onAddToFavoriteGames()">
+          (keydown.enter)="onAddToFavoriteGames()" (keydown.enter)="$event.preventDefault()">
         <button class="btn btn-outline-primary" type="button" (click)="onAddToFavoriteGames()">
           Agregar favorito
         </button>
